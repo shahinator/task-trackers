@@ -1,0 +1,13 @@
+1.What is a module in Python? Why do we use modules?
+Answer: Module  is a Python file where we write the Variables, Functions and Classes. We used Modules becasue the Python core Organizing and reusing the Python code.
+
+2.What is pip and why is it used?
+Answer: pip is a Python Package Manager using pip we can Install, Update and Remove the Package from our Python Environment.
+3.What is the Python Standard Library? Why is it important?
+Answer: Python Standard Library is a ready Made the Python Library where stored built-in modules collections.It is very important for using python which give a developer save time, reliablity and trusted code.
+4.What is JSON and why is it used in API communication?
+Answer: JSON means JavaScript Object Notation which is lightweight data format. It used for API communication the data transfer and easy undertandable the data for the mechine and human.
+5.What is an HTTP request? Explain the difference between GET and POST requests.
+Answer: HTTP request is the process where browser sent request the Sevrer and Server provide the data based on client request.
+GET: Take the data from Server.
+POST: Send the data from Server.
