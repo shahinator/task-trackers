@@ -4,57 +4,65 @@ class TaskManager:
     def add_task(self):
         title = input("Enter Title: ")
         description = input("Enter Description: ")
+        priority = input("Enter Priority (High/Medium/Low): ").capitalize()
+        if priority not in ["High", "Medium", "Low"]:
+            print("Invalid priority! Setting to Low.")
+            priority = "Low"
         task = {
             "title": title,
             "description": description,
-            "completed": False
+            "priority": priority
         }
         self.tasks.append(task)
-        print("Task added successfully!\n")
+        print("Task added successfully!")
     def view_tasks(self):
         if not self.tasks:
-            print("No tasks found!\n")
+            print("No tasks found!")
             return
-        print("\nTasks List:")
+        print("Your Tasks:")
         for i, task in enumerate(self.tasks, start=1):
-            status = "Completed" if task["completed"] else "Not Completed"
-            print(f"{i}. {task['title']} - {task['description']} [{status}]")
+            print(f"{i}. {task['title']} - {task['description']} [{task['priority']} Priority]")
         print()
     def delete_task(self):
         if not self.tasks:
-            print("There is no task for deleting.\n")
+            print("No tasks to delete!")
             return
         self.view_tasks()
         try:
-            num = int(input("Enter task number for deleting: "))
+            num = int(input("Enter task number to delete: "))
             if 1 <= num <= len(self.tasks):
-                self.tasks.pop(num - 1)
-                print("Task deleted successfully!\n")
+                del self.tasks[num - 1]
+                print("Task deleted successfully!")
             else:
-                print("Invalid task number!\n")
-        except ValueError:
-            print("Please enter a valid number!\n")
-    def mark_completed(self):
+                print("Invalid number!")
+        except:
+            print("Please enter a valid number!")
+    def update_priority(self):
         if not self.tasks:
-            print("No tasks available to mark as completed.\n")
+            print("No tasks available!")
             return
         self.view_tasks()
         try:
-            num = int(input("Enter task number to mark as completed: "))
+            num = int(input("Enter task number to update priority: "))
             if 1 <= num <= len(self.tasks):
-                self.tasks[num - 1]["completed"] = True
-                print("Task marked as completed!\n")
+                new_priority = input("Enter new priority (High/Medium/Low): ").capitalize()
+
+                if new_priority in ["High", "Medium", "Low"]:
+                    self.tasks[num - 1]["priority"] = new_priority
+                    print("Task priority updated successfully!")
+                else:
+                    print("Invalid priority!")
             else:
-                print("Invalid task number!\n")
-        except ValueError:
-            print("Please enter a valid number!\n")
+                print("Invalid number!")
+        except:
+            print("Please enter a valid number!")
     def run(self):
         while True:
             print("===== Task Tracker =====")
             print("1. Add Task")
             print("2. View Tasks")
             print("3. Delete Task")
-            print("4. Mark Task as Completed")
+            print("4. Update Task Priority")
             print("5. Exit")
             choice = input("Enter choice: ")
             if choice == "1":
@@ -64,11 +72,11 @@ class TaskManager:
             elif choice == "3":
                 self.delete_task()
             elif choice == "4":
-                self.mark_completed()
+                self.update_priority()
             elif choice == "5":
                 print("Goodbye!")
                 break
             else:
-                print("Invalid choice!\n")
+                print("Invalid choice!")
 task_manager = TaskManager()
 task_manager.run()
